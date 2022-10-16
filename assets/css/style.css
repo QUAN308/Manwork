@@ -1,0 +1,103 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    background-image: url("https://img.freepik.com/free-vector/sky-background-pastel-paper-cut-design-vector_53876-144660.jpg?w=2000");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#container{
+    width: 100%;
+    margin: auto;
+}
+.todo-title{
+    text-align: center;
+    font-size: 25px;
+    color: rgb(255, 145, 0);
+}
+.input-todo{
+    width: 100%;
+}
+.input-todo input{
+    width: 450px;
+    height: 37px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 10px;
+    border: none;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+.input-todo button{
+    position: relative;
+    left: 34.5%;
+    width: 100px;
+    height: 37px;
+    background: #fff;
+    border: none;
+    font-size: 17px;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+    background-color: rgb(255, 145, 0);
+    color: #fff;
+}
+.input-todo button:hover{
+    background-color: rgb(255, 188, 100);
+    color: #fff;
+}
+.content-row{
+    
+    width: 100%;
+    padding: 10px;
+}
+.content-todo{
+    width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 50px;
+    visibility: hidden;
+}
+.todo-content_title{
+    width: 100%;
+    font-size: 25px;
+}
+.todo-content_description{
+    width: 100%;
+    padding-top: 10px;
+    line-height: 25px;
+}
+.todo-button_group{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.todo_add{
+    width: 30%;
+    height: 30px;
+    border: none;
+    background-color: rgb(255, 145, 0);
+    color: #fff;
+}
+.todo_remove{
+    width: 30%;
+    height: 30px;
+    border: none;
+    background-color: rgb(255, 145, 0);
+    color: #fff;
+}
+.todo_edit{
+    width: 30%;
+    height: 30px;
+    border: none;
+    background-color: rgb(255, 145, 0);
+    color: #fff;
+}
+.todo_add:hover{
+    background-color: rgb(255, 188, 100);
+}
+.todo_remove:hover{
+    background-color: rgb(255, 188, 100);
+}
+.todo_edit:hover{
+    background-color: rgb(255, 188, 100);
+}
