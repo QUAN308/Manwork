@@ -1,7 +1,10 @@
+:root{
+    --main-color: rgb(255, 145, 0);
+    --btn-hover: rgb(255, 187, 98);
+}
 body{
     font-family: 'Roboto', sans-serif;
     background-image: url("https://img.freepik.com/free-vector/sky-background-pastel-paper-cut-design-vector_53876-144660.jpg?w=2000");
-    background-size: cover;
     background-repeat: no-repeat;
 }
 #container{
@@ -44,60 +47,6 @@ body{
     background-color: rgb(255, 188, 100);
     color: #fff;
 }
-.content-row{
-    
-    width: 100%;
-    padding: 10px;
-}
-.content-todo{
-    width: 300px;
-    background-color: #fff;
-    border-radius: 5px;
-    margin-top: 50px;
-    visibility: hidden;
-}
-.todo-content_title{
-    width: 100%;
-    font-size: 25px;
-}
-.todo-content_description{
-    width: 100%;
-    padding-top: 10px;
-    line-height: 25px;
-}
-.todo-button_group{
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-
-}
-.todo_add{
-    width: 30%;
-    height: 30px;
-    border: none;
-    background-color: rgb(255, 145, 0);
-    color: #fff;
-}
-.todo_remove{
-    width: 30%;
-    height: 30px;
-    border: none;
-    background-color: rgb(255, 145, 0);
-    color: #fff;
-}
-.todo_edit{
-    width: 30%;
-    height: 30px;
-    border: none;
-    background-color: rgb(255, 145, 0);
-    color: #fff;
-}
-.todo_add:hover{
-    background-color: rgb(255, 188, 100);
-}
-.todo_remove:hover{
-    background-color: rgb(255, 188, 100);
-}
-.todo_edit:hover{
-    background-color: rgb(255, 188, 100);
+.todo-button_group button:hover{
+    background-color: var(--btn-hover) !important;
 }
