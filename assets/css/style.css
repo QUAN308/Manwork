@@ -1,6 +1,9 @@
 :root{
     --main-color: rgb(0, 149, 255);
     --btn-hover: rgb(255, 187, 98);
+    --backgroundColor: linear-gradient(48deg, rgba(255,0,184,1) 0%, rgba(255,0,215,1) 0%, rgba(0,194,255,1) 100%);
+    --pinkBackground: rgba(255,0,184,1);
+    --border-input: 1px solid rgb(206, 206, 206);
 }
 @keyframes invisible{
     from{
@@ -19,7 +22,7 @@ html{
 }
 body{
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(227deg, #7F7FD5, #86A8E7, #91EAE4);
+    background: var(--backgroundColor);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -51,10 +54,9 @@ body{
     /* background-color: #fff; */
 }
 .todo-title{
-    text-align: center;
     font-size: 20px;
-    color: var(--main-color);
-    padding: 20px 0px;
+    color: #000;
+    padding-bottom: 20px;
 }
 .input-todo{
     width: 100%;
@@ -68,22 +70,20 @@ body{
     width: 90%;
     height: 40px;
     margin: auto;
-    border: none;
+    border: var(--border-input);
     font-size: 17px;
     margin-bottom: 10px;
-    box-shadow: 0px 0px 5px rgb(208, 208, 208);
     padding: 0px 10px;
 }
 .input-todo button{
     width: 10%;
     height: 40px;
-    background: var(--main-color);
+    background: rgb(204, 0, 255);
     border: none;
     border-radius: 2px;
     font-size: 27px;
     cursor: pointer;
     color: #fff;
-    box-shadow: 0px 0px 5px rgb(208, 208, 208);
 }
 .input-todo button:hover{
     background-color: rgb(0, 104, 178);
@@ -93,14 +93,23 @@ body{
 }
 .content_todo{
     width: 100%;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     margin-top: 20px;
 }
 .view-content{
+    width: 100%;
     padding: 12px 10px;
     margin-bottom: 20px;
     line-height: 25px;
+    background-color: rgb(244, 244, 244);
     display: flex;
     justify-content: space-between;
-    box-shadow: 0px 0px 5px rgb(208, 208, 208);
+}
+.view-content p{
+    width: 93%;
+    word-wrap: break-word;
+}
+.control_task{
+    width: 4%;
+    cursor: pointer;
 }

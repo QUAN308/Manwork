@@ -1,36 +1,39 @@
 let btn_add = document.querySelector('.input-todo button');
 let data = [];
 let countID = 0;
-
 btn_add.addEventListener('click', (e) => {
-    console.log(e);
     var getInput = document.querySelector('.input-todo input');
     var getMessage = document.querySelector('.message')
-    let inputValue = document.getElementById('inputValue').value;
-    let viewDisplayContent = document.querySelector('.content_todo');
+    var inputValue = document.getElementById('inputValue').value;
+
+    var viewDisplayContent = document.querySelector('.content_todo');
     if(!inputValue){
         getInput.style.border = '2px solid red';
         getMessage.innerHTML = "* Bạn chưa nhập nội dung";
     }else if(inputValue){
         getMessage.innerHTML = ""
-        getInput.style.border = 'none';
+        getInput.style.border = 'var(--border-input)';
         var dataPush = {
             id: countID = countID + 1,
             content: inputValue
         }
         data.push(dataPush);
-        for(let i=0;i<data.length;i++){
-            var loadData = `
+        for(var i=0;i<data.length;i++){
+            var renderData = `
                 <div class="view-content">
-                <p>${data[i].content}</p>
-                <i class="bi bi-three-dots more-option"></i>
+                    <div class="control_task">
+                        <i class="bi bi-circle"></i>
+                    </div>
+                    <p>${data[i].content}</p>
                 </div>
             `
         }
-        viewDisplayContent.innerHTML += loadData;
+        viewDisplayContent.innerHTML += renderData;
         document.getElementById('inputValue').value = "";
+
     }
 })
-btn_add.addEventListener('keydown', (e) => {
-    console.log(e.code)
-});
+var getControlTask = document.querySelector('.control_task');
+getControlTask.addEventListener("click", (e) => {
+    console.log(e);
+})
