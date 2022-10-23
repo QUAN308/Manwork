@@ -1,46 +1,63 @@
-let btn_add = document.querySelector('.input-todo button');
-let data = [];
-let countID = 0;
-btn_add.addEventListener('click', (e) => {
-    var getInput = document.querySelector('.input-todo input');
-    var getMessage = document.querySelector('.message')
-    var inputValue = document.getElementById('inputValue').value;
-    var viewDisplayContent = document.querySelector('.content_todo');
-    if(!inputValue){
-        getInput.style.border = '2px solid red';
-        getMessage.innerHTML = "* Bạn chưa nhập nội dung";
-    }else if(inputValue){
-        getMessage.innerHTML = ""
-        getInput.style.border = 'var(--border-input)';
-        var dataPush = {
-            id: countID = countID + 1,
-            content: inputValue
-        }
-        data.push(dataPush);
-        for(var i=0;i<data.length;i++){
-            var renderData = `
-                <div class="view-content">
-                    <p>${data[i].content}</p>
-                    <div class="control_function">
-                        <i class="bi bi-pencil-square edit"></i>
-                        <input class="trash" type="button" value="${data[i].id}">
-                    </div>
+const taskApi = 'http://localhost:3000/task';
+
+function start() {
+    getTasks(renderCourses);
+    handleCreateTask();
+}
+start();
+
+// Step 2
+function getTasks(callback) {
+    fetch(taskApi)
+        .then((response) => {
+            return response.json();
+        })
+        .then(callback);
+}
+//Step 3
+function renderCourses(tasks) {
+    let localRender = document.querySelector('.content_todo');
+    tasks.map((task) => {
+        var renderClient = `
+            <div class="view-content">
+                <p>${task.content}</p>
+                <div class="control_function">
+                    <i class="bi bi-pencil-square edit"></i>
+                    <i class="bi bi-trash trash"></i>
                 </div>
-            `
+            </div>
+        `;
+        localRender.innerHTML += renderClient;
+    });
+}
+// Step 4
+function handleCreateTask() {
+    let btnAddTask = document.querySelector('.input-todo button');
+    btnAddTask.addEventListener('click', () => {
+        let value = document.querySelector('#inputValue').value;
+        if (!value) {
+            console.log('Bạn chưa nhập nội dung');
+        } else {
+            let data = {
+                content: value,
+            };
+            createTask(data);
         }
-        // Hiển thị ra màn hình và clear ô input
-        viewDisplayContent.innerHTML += renderData;
-        document.getElementById('inputValue').value = "";
-        // Xóa task
-        var getTrash = document.querySelectorAll('.trash');
-        for(var i=0;i<getTrash.length;i++){
-            var trash = getTrash[i];
-            trash.addEventListener("click", () => {
-                console.log(trash.value);
-                data = data.filter((item) => {
-                    return item.id != trash.value;
-                })
-            })
-        }
-    }
-})
+    });
+}
+// Step 5
+function createTask(data, callback) {
+    console.log(callback);
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+    fetch(taskApi, options)
+        .then((response) => {
+            return response.json();
+        })
+        .then(callback);
+}
