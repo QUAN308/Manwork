@@ -5,7 +5,6 @@ btn_add.addEventListener('click', (e) => {
     var getInput = document.querySelector('.input-todo input');
     var getMessage = document.querySelector('.message')
     var inputValue = document.getElementById('inputValue').value;
-
     var viewDisplayContent = document.querySelector('.content_todo');
     if(!inputValue){
         getInput.style.border = '2px solid red';
@@ -21,19 +20,27 @@ btn_add.addEventListener('click', (e) => {
         for(var i=0;i<data.length;i++){
             var renderData = `
                 <div class="view-content">
-                    <div class="control_task">
-                        <i class="bi bi-circle"></i>
-                    </div>
                     <p>${data[i].content}</p>
+                    <div class="control_function">
+                        <i class="bi bi-pencil-square edit"></i>
+                        <input class="trash" type="button" value="${data[i].id}">
+                    </div>
                 </div>
             `
         }
+        // Hiển thị ra màn hình và clear ô input
         viewDisplayContent.innerHTML += renderData;
         document.getElementById('inputValue').value = "";
-
+        // Xóa task
+        var getTrash = document.querySelectorAll('.trash');
+        for(var i=0;i<getTrash.length;i++){
+            var trash = getTrash[i];
+            trash.addEventListener("click", () => {
+                console.log(trash.value);
+                data = data.filter((item) => {
+                    return item.id != trash.value;
+                })
+            })
+        }
     }
-})
-var getControlTask = document.querySelector('.control_task');
-getControlTask.addEventListener("click", (e) => {
-    console.log(e);
 })
