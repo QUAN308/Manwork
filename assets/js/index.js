@@ -1,63 +1,57 @@
 const taskApi = 'http://localhost:3000/task';
 
-function start() {
-    getTasks(renderCourses);
+function start(){
+    renderTasks();
     handleCreateTask();
 }
 start();
 
-// Step 2
-function getTasks(callback) {
+// Render Task
+function renderTasks(){
+    let locationView = document.querySelector(".content_todo");
     fetch(taskApi)
-        .then((response) => {
-            return response.json();
-        })
-        .then(callback);
-}
-//Step 3
-function renderCourses(tasks) {
-    let localRender = document.querySelector('.content_todo');
-    tasks.map((task) => {
-        var renderClient = `
-            <div class="view-content">
-                <p>${task.content}</p>
-                <div class="control_function">
-                    <i class="bi bi-pencil-square edit"></i>
-                    <i class="bi bi-trash trash"></i>
+    .then((respone) => {
+        return respone.json();
+    })
+    .then((tasks) => {
+        tasks.map((task) => {
+            let render = `
+                <div class="view-content">
+                    <p>${task.content}</p>
+                    <div class="control_function">
+                        <i class="bi bi-pencil-square edit"></i>
+                        <i class="bi bi-trash trash"></i>
+                    </div>
                 </div>
-            </div>
-        `;
-        localRender.innerHTML += renderClient;
+            `
+            locationView.innerHTML += render;
+        })
+        
     });
 }
-// Step 4
-function handleCreateTask() {
-    let btnAddTask = document.querySelector('.input-todo button');
-    btnAddTask.addEventListener('click', () => {
-        let value = document.querySelector('#inputValue').value;
-        if (!value) {
-            console.log('Bạn chưa nhập nội dung');
-        } else {
-            let data = {
-                content: value,
-            };
-            createTask(data);
+function handleCreateTask(){
+    let btnAddTask = document.querySelector(".input-todo button");
+    btnAddTask.addEventListener("click", () => {
+        let inputValue = document.querySelector(".input-todo input").value;
+        let value = {
+            content: inputValue
         }
-    });
+        createTask(value);
+    })
 }
-// Step 5
-function createTask(data, callback) {
-    console.log(callback);
+
+function createTask(data, callback){
     let options = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data),
-    };
+        body: JSON.stringify(data)
+    }
     fetch(taskApi, options)
-        .then((response) => {
-            return response.json();
+    // Hiển thị dữ liệu ra màn hình khi task được thêm vào db
+        .then((respone) => {
+            return respone.json();
         })
         .then(callback);
 }
